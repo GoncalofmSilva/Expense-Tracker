@@ -1,0 +1,22 @@
+{
+  "name": "c",
+  "version": "1.0.0",
+  "description": "Build a simple expense tracker to manage your finances.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoncalofmSilva/Expense-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoncalofmSilva/Expense-Tracker/issues"
+  },
+  "homepage": "https://github.com/GoncalofmSilva/Expense-Tracker#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
