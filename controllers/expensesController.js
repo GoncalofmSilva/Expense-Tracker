@@ -1,4 +1,4 @@
-import {addExpense} from '../models/expenseModel.js';
+import {createExpense} from '../models/expensesModel.js';
 
 export const addExpense = async (req, res) => {
     try {
@@ -7,7 +7,7 @@ export const addExpense = async (req, res) => {
         if (!description || !amount){
             return res.status(400).json({message : 'Description and amount are required.'});
         }
-        const newExpense = await addExpense({description, amount})
+        const newExpense = await createExpense({description, amount})
         res.status(201).json(newExpense);
 
     } catch (error) {
