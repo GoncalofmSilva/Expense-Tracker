@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": 1,
+    "description": "Jantar",
+    "amount": "10.00€",
+    "date": "2025-11-04"
+  },
+  {
+    "id": 2,
+    "description": "Almoço",
+    "amount": "15.00€",
+    "date": "2025-11-04"
+  }
+]

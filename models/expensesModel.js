@@ -54,3 +54,34 @@ export async function deletedExpense(id) {
   }
   return null;
 }
+
+export async function getAllExpenses() {
+  const expenses = await readExpenses();
+  return expenses;
+}
+
+export async function summOfExpenses() {
+  const expenses = await readExpenses()
+  let total = 0
+  for(let expense of expenses){
+    expense.amount = parseFloat(expense.amount.split("€")[0])
+    total += expense.amount // adding up all amounts and assigning to total
+  }
+
+  return { total: `Total expenses ${total}€` };
+}
+
+export async function summOfExpensesMonth(month) {
+  const expenses = await readExpenses()
+  const year = new Date().getFullYear() // get current year
+  const monthNumber = new Date(`${month} 1, ${year}`).getMonth()+1; // add 1 because getMonth is zero-based and add the year to avoid NaN
+  let total = 0
+  for (let expense of expenses){
+    if(parseInt(expense.date.split("-")[1]) === monthNumber){
+      expense.amount = parseFloat(expense.amount.split("€")[0])
+      total += expense.amount // adding up all amounts and assigning to total
+    }
+  }
+
+  return { total: `Total expenses for current ${total}€` };
+}
