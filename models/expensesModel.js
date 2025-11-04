@@ -36,11 +36,21 @@ export async function createExpense({ description, amount }) {
 export async function updatedExpense({ id, description, amount }) {
   const expenses = await readExpenses();
   const index = expenses.findIndex((expense) => expense.id === id);
-  console.log(index);
   if (index !== -1) {
     expenses[index] = { ...expenses[index], description, amount, date: expenses[index].date };
     await writeExpenses(expenses);
     return expenses[index];
+  }
+  return null;
+}
+
+export async function deletedExpense(id) {
+  const expenses = await readExpenses();
+  const index = expenses.findIndex((expense) => expense.id === id)
+  if(index !== -1){
+    const deleted = expenses.splice(index, 1)[0]
+    await writeExpenses(expenses)
+    return deleted
   }
   return null;
 }

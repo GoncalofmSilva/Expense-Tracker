@@ -1,4 +1,4 @@
-import { createExpense, updatedExpense } from "../models/expensesModel.js";
+import { createExpense, updatedExpense, deletedExpense } from "../models/expensesModel.js";
 
 export const addExpense = async (req, res) => {
   try {
@@ -32,15 +32,38 @@ export const updateExpense = async (req, res) => {
       description,
       amount,
     });
-    res
-      .status(200)
-      .json({
-        message: `Expense ID ${expenseId} updated successfully`,
-        updated,
-      });
+    res.status(200).json({
+      message: `Expense ID ${expenseId} updated successfully`,
+      updated,
+    });
   } catch (error) {
     res
       .status(500)
       .json({ error: "Error updating expense", details: error.message });
   }
 };
+
+export const deleteExpense = async (req, res) => {
+  try {
+    const expenseId = parseInt(req.params.id);
+    if (!expenseId) {
+      return res
+        .status(400)
+        .json({ message: "Expense ID is required for deletion" });
+    }
+
+    const deleted = await deletedExpense(expenseId);
+    res
+      .status(200)
+      .json({
+        message: `Expense ID ${expenseId} deleted successfully`,
+        deleted,
+      });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error deleting expense", details: error.message });
+  }
+};
+
+// TODO: Implement View all Expenses / Summary of Expenses / Summary of Expenses for specific month (current year)
