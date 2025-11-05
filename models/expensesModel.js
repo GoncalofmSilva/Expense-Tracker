@@ -83,5 +83,5 @@ export async function summOfExpensesMonth(month) {
     }
   }
 
-  return { total: `Total expenses for current ${total}€` };
+  return { total: `Total expenses for ${month}: ${total}€` };
 }
